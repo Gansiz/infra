@@ -1,0 +1,25 @@
+{
+  "builders": [
+    {
+     "type": "googlecompute",
+     "project_id": "devops-test-361323",
+     "image_name": "reddit-base-{{timestamp}}",
+     "source_image": "ubuntu-1804-bionic-v20220901",
+     "zone": "europe-west1-b",
+     "ssh_username": "appuser",
+     "machine_type": "f1-micro"
+     }
+   ],
+  "provisioners": [
+     {
+      "type": "shell",
+      "script": "/home/rain/scripts/scripts/ruby_install.sh"
+     },
+     {
+      "type": "shell",
+      "script": "/home/rain/scripts/scripts/mongodb_install.sh",
+      "execute_command": "sudo {{.Path}}"
+     }
+   ]
+}
+
